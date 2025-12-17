@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neugen Embedded Solutions</title>
+    <title>Wytmoon Solutions - Your Business Partner</title>
     <style>
         * {
             margin: 0;
@@ -15,16 +15,56 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Navigation with Glass Effect */
         nav {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         nav .container {
@@ -40,6 +80,11 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: white;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(-2deg);
         }
 
         nav ul {
@@ -52,71 +97,178 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         nav a:hover {
-            opacity: 0.8;
+            color: #667eea;
         }
 
-        /* Hero Section */
+        /* Hero Section with Animated Elements */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: transparent;
             color: white;
-            padding: 100px 20px;
+            padding: 150px 20px;
             text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: white;
-            color: #667eea;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-weight: bold;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
         }
 
-        /* Sections */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator::after {
+            content: '⌄';
+            font-size: 3rem;
+            color: white;
+        }
+
+        /* Sections with Reveal Animation */
         section {
-            padding: 80px 20px;
+            padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-size: 3rem;
+            margin-bottom: 3rem;
             text-align: center;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
         }
 
         /* About Section */
+        #about {
+            background: white;
+        }
+
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .about-text p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .about-stats {
@@ -126,109 +278,220 @@
         }
 
         .stat-box {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
             text-align: center;
+            color: white;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .stat-box:hover {
+            transform: scale(1) rotate(2deg);
         }
 
         .stat-box h3 {
-            font-size: 2.5rem;
-            color: #667eea;
+            font-size: 3rem;
             margin-bottom: 0.5rem;
+            animation: countUp 2s;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Services Section */
+        #services {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .service-card {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(100%);
+            transition: transform 0.4s;
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            transform: translateY(0);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: rotate 3s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
 
         .service-card h3 {
             color: #667eea;
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .service-card p {
+            position: relative;
+            z-index: 1;
         }
 
         /* Contact Section */
+        #contact {
+            background: white;
+        }
+
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
         }
 
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
         }
 
         .contact-form button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 40px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-form button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .contact-form button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
         }
 
         .contact-info h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
 
         .contact-info p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .contact-info p::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
         }
 
         /* Footer */
         footer {
-            background: #2d3748;
+            background: #1a1a2e;
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
-                flex-direction: column;
                 gap: 1rem;
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .about-content,
@@ -239,20 +502,59 @@
             .about-stats {
                 grid-template-columns: 1fr;
             }
+
+            section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <!-- <div class="logo">
-                <img src="neugen.gif" alt="Neugen Embedded Solutions" style="height: 100px;">
-            </div> -->
-            <div class="logo">
-                <img src="neugen.gif" alt="Neugen Embedded Solutions" style="height: 100px; margin-right: 10px; vertical-align: middle;">
-                  Neugen Embedded Solutions
-            </div>
+            <div class="logo">Wytmoon Solutions</div>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -263,11 +565,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <img src="neugen.gif" alt="Neugen Embedded Solutions" style="height: 200px;">
-        <h1>Welcome to Neugen Embedded Solutions</h1>
+    <section id="home" class="hero visible">
+        <h1>Welcome to Wytmoon Solutions</h1>
         <p>Transforming Ideas into Digital Reality</p>
         <a href="#contact" class="btn">Get Started</a>
+        <div class="scroll-indicator"></div>
     </section>
 
     <!-- About Section -->
@@ -275,7 +577,7 @@
         <h2>About Us</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Neugen Embedded Solutions is a leading Embedded testing and manufecturing firm dedicated to delivering innovative solutions that drive business growth and digital transformation.</p>
+                <p>Wytmoon Solutions is a leading technology firm dedicated to delivering innovative solutions that drive business growth and digital transformation.</p>
                 <p>With over a decade of experience, we've helped hundreds of businesses achieve their goals through cutting-edge technology and strategic consulting.</p>
                 <p>Our team of experts is passionate about creating value for our clients and building long-lasting partnerships based on trust and excellence.</p>
             </div>
@@ -355,7 +657,7 @@
                 <h3>Get in Touch</h3>
                 <p><strong>Address:</strong><br>123 Tech Street, Silicon Valley<br>California, CA 94025</p>
                 <p><strong>Phone:</strong><br>+1 (555) 123-4567</p>
-                <p><strong>Email:</strong><br>info@techvision.com</p>
+                <p><strong>Email:</strong><br>info@wytmoon.com</p>
                 <p><strong>Business Hours:</strong><br>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
             </div>
         </div>
@@ -363,11 +665,33 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 TechVision Solutions. All rights reserved.</p>
+        <p>&copy; 2024 Wytmoon Solutions. All rights reserved.</p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('fade-out');
+            }, 1000);
+        });
+
+        // Create Animated Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 5 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -381,12 +705,100 @@
             });
         });
 
-        // Form submission handler
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form submission with animation
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Sending...';
+            button.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                button.textContent = '✓ Sent!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.transform = 'scale(1)';
+                    this.reset();
+                }, 2000);
+            }, 1500);
         });
+
+        // Mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.style.position = 'fixed';
+            trail.style.width = '5px';
+            trail.style.height = '5px';
+            trail.style.borderRadius = '50%';
+            trail.style.background = 'rgba(102, 126, 234, 0.5)';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trail.style.pointerEvents = 'none';
+            trail.style.zIndex = '9999';
+            trail.style.transition = 'all 0.5s';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(2)';
+            }, 10);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+
+        // Counter animation for stats
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const statBoxes = entry.target.querySelectorAll('.stat-box h3');
+                    animateValue(statBoxes[0], 0, 10, 2000);
+                    animateValue(statBoxes[1], 0, 500, 2000);
+                    animateValue(statBoxes[2], 0, 200, 2000);
+                    animateValue(statBoxes[3], 0, 50, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const aboutSection = document.querySelector('#about');
+        if (aboutSection) {
+            statsObserver.observe(aboutSection);
+        }
     </script>
 </body>
 </html>
